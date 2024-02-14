@@ -27,10 +27,12 @@
       h2 {
         color: white;
         font-size: 18px;
+
         padding-top: 2px;
         padding-left: 5px;
         padding-right: 5px;
       }
+      
       #nooo {
         background: transparent;
         color: red;
@@ -64,14 +66,12 @@
       style="display: flex; flex-direction: column"
     >
       <h1>Will You Be Mine Mimi?
-        My sunshine
-      </h1>
+      My sunshine</h1>
       <img
         src="https://i.postimg.cc/DZkw7g5n/output-onlinegiftools.gif"
         alt=""
       />
       <button
-        v-if="!hideNoButton" <!-- Add this v-if directive to conditionally render the button -->
         type="button"
         class="btn btn-danger"
         @click="changeText('noButton')"
@@ -94,7 +94,6 @@
         </button>
 
         <button
-          v-if="!hideNoButton" <!-- Add this v-if directive to conditionally render the button -->
           type="button"
           class="btn btn-danger"
           @click="changeText('noButton')"
@@ -104,7 +103,7 @@
         </button>
       </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
       new Vue({
@@ -134,22 +133,16 @@
           currentHeaderTextIndex: 0,
           currentConfirmationIndex: 0,
           yesButtonSize: 1,
-          hideNoButton: false, <!-- Add this flag to control button visibility -->
         },
         methods: {
           changeText(button) {
-            if (!this.hideNoButton && button === "noButton") {
+            if (button === "noButton") {
               this.currentHeaderTextIndex =
                 (this.currentHeaderTextIndex + 1) % this.headerText.length;
               this.currentConfirmationIndex =
                 (this.currentConfirmationIndex + 1) %
                 this.confirmationMessages.length;
               this.yesButtonSize += 5;
-
-              // Check if the number of clicks exceeds 17
-              if (this.currentHeaderTextIndex >= 17) {
-                this.hideNoButton = true;
-              }
             }
           },
           yesButton() {
